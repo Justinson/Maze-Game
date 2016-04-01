@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package maze.game;
+package mazegame;
 
 import environment.ApplicationStarter;
 
@@ -17,8 +17,7 @@ public class MazeGame {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
         ApplicationStarter.run("Maze", new Maze());
     }
-    
+
 }
