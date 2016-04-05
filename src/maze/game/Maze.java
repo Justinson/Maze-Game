@@ -26,7 +26,7 @@ class Maze extends Environment {
 
 
     public Maze() {
-        grid = new Grid(35, 25, 20, 20, new Point(10, 50), Color.BLACK);
+        grid = new Grid(71, 38, 20, 20, new Point(10, 10), Color.BLACK);
 
         
         
