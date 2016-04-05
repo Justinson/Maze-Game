@@ -13,6 +13,8 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import map.Map;
+import map.MapVisualizerDefault;
 
 /**
  *
@@ -22,16 +24,13 @@ class Maze extends Environment {
     
     int x;
     int y;
-    private Grid grid;
-
+//    private Grid grid;
+    private Map currentMap;
+    private MapVisualizerDefault mapVisualizer;
 
     public Maze() {
-        grid = new Grid(71, 38, 20, 20, new Point(10, 10), Color.BLACK);
-
-        
-        
-        
-        
+//        grid = new Grid(71, 38, 20, 20, new Point(10, 10), Color.BLACK);
+        setCurrentMap(MapFactory.getMapByName(MapFactory.MAP_NAME_LEVEL_01));
     }
 
     @Override
@@ -56,11 +55,38 @@ class Maze extends Environment {
 
     @Override
     public void paintEnvironment(Graphics graphics) {
-                if (grid != null) {
-            grid.paintComponent(graphics);
-    }
+//                if (grid != null) {
+//            grid.paintComponent(graphics);
+//    }
     
-}
+        if(currentMap != null){
+            currentMap.drawMap(graphics);
+        }
+        
+    }
+
+    /**
+     * @return the currentMap
+     */
+    public Map getCurrentMap() {
+        return currentMap;
+    }
+
+    /**
+     * @param currentMap the currentMap to set
+     */
+    public void setCurrentMap(Map currentMap) {
+        if (mapVisualizer == null) {
+            mapVisualizer = new MapVisualizerDefault(true, true);
+        }
+        
+        this.currentMap = currentMap;
+        this.currentMap.setMapVisualizer(mapVisualizer);
+        this.currentMap.setPosition(new Point(50, 50));
+        //set portal, barrier, item listeners
+        
+        repaint();
+    }
 
    
     }
