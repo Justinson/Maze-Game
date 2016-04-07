@@ -136,14 +136,6 @@ public class MapFactory {
         map.addObstacleRange(new Point(24, 12 ), new Point(25, 15), ObstacleType.BARRIER);
 
 
-
-
-
-
-
-
-
-
         map.addObstacleRange(new Point(1, 21), new Point(1, 33), ObstacleType.BARRIER);
         map.addObstacleRange(new Point(2, 21), new Point(2, 33), ObstacleType.BARRIER);
         map.addObstacleRange(new Point(3, 24), new Point(3, 33), ObstacleType.BARRIER);
