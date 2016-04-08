@@ -7,8 +7,10 @@ package mazegame;
 
 import environment.Environment;
 import grid.Grid;
+import images.ResourceTools;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -24,13 +26,15 @@ class Maze extends Environment {
     
     int x;
     int y;
-//    private Grid grid;
+    Image InventoryImage;
     private Map currentMap;
     private MapVisualizerDefault mapVisualizer;
 
     public Maze() {
 //        grid = new Grid(71, 38, 20, 20, new Point(10, 10), Color.BLACK);
         setCurrentMap(MapFactory.getMapByName(MapFactory.MAP_NAME_LEVEL_01));
+        InventoryImage = ResourceTools.loadImageFromResource("mazegame/Chest.png");
+
     }
 
     @Override
@@ -62,7 +66,7 @@ class Maze extends Environment {
         if(currentMap != null){
             currentMap.drawMap(graphics);
         }
-        
+        graphics.drawImage
     }
 
     /**
