@@ -11,5 +11,5 @@ package mazegame;
  */
 public enum GameState {
 
-    MENU, GAME, PAUSE, END
+    MENU, GAME, PAUSE, END, OPTION
 }

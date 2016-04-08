@@ -6,6 +6,7 @@
 package mazegame;
 
 import audio.AudioPlayer;
+import environment.Direction;
 import environment.Environment;
 import images.ResourceTools;
 import java.awt.Color;
@@ -24,10 +25,14 @@ class Maze extends Environment {
 
     Image titleImage;
     private GameState state;
+    private final Image sectionOne;
+    private final Image castleOne;
 
     public Maze() {
 
         titleImage = ResourceTools.loadImageFromResource("mazegame/Title.png");
+        sectionOne = ResourceTools.loadImageFromResource("mazegame/One.png");
+        castleOne = ResourceTools.loadImageFromResource("mazegame/CastleOne.png");
         state = GameState.MENU;
 
     }
@@ -42,6 +47,11 @@ class Maze extends Environment {
 
     @Override
     public void keyPressedHandler(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_P) {
+            setState(GameState.PAUSE);
+        } else if (getState() == GameState.PAUSE) {
+            setState(GameState.GAME);
+        }
     }
 
     @Override
@@ -50,12 +60,18 @@ class Maze extends Environment {
 
     @Override
     public void environmentMouseClicked(MouseEvent e) {
-        if (getState() == GameState.MENU) {
-            if (new Rectangle(505, 310, 300, 90).contains(e.getPoint())) {
+        //System.out.println(" Mouse click " + e.getPoint().toString());
 
-            } else {
+        if (getState() == GameState.MENU) {
+            if (new Rectangle(584, 307, 233, 52).contains(e.getPoint())) {
+                System.out.println("continue Clicked");
+            } else if (new Rectangle(558, 419, 277, 55).contains(e.getPoint())) {
+                setState(GameState.GAME);
+
+            } else if (new Rectangle(596, 540, 202, 49).contains(e.getPoint())) {
+                setState(GameState.OPTION);
+
             }
-            setState(GameState.GAME);
 
         }
     }
@@ -65,7 +81,18 @@ class Maze extends Environment {
         if (state == GameState.MENU) {
             graphics.drawImage(titleImage, 0, 0, 1367, 710, null);
         } else if (state == GameState.GAME) {
+            graphics.drawImage(sectionOne, -35, -15, 1405, 745, null);
+            graphics.drawImage(castleOne, 5, 10, 400, 300, null);
+        } else if (state == GameState.OPTION) {
             this.setBackground(Color.BLACK);
+            Font fnt0 = new Font("button", Font.BOLD, 70);
+            graphics.setFont(fnt0);
+            graphics.setColor(Color.WHITE);
+            graphics.drawString("OPTIONS", 540, 100);
+        } else if (state == GameState.PAUSE) {
+
+        } else if (state == GameState.END) {
+
         }
     }
 
