@@ -18,7 +18,7 @@ public class MazeGame {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        ApplicationStarter.run("Maze", new Maze());
+        ApplicationStarter.run("Maze Wanderer", new Maze());
     }
     
 }

@@ -18,6 +18,7 @@ import map.ObstacleType;
 public class MapFactory {
 
     public static final String MAP_NAME_LEVEL_01 = "LEVEL_01";
+    public static final String MAP_NAME_LEVEL_02 = "LEVEL_02";
 
     //Item Types
     public static final String ITEM_TYPE_KEY = "KEY";
@@ -36,12 +37,13 @@ public class MapFactory {
         Map map = new Map(null, CELL_SIZE, new Dimension(35, 67));
 
         //add all my portals, barriers and items
+//<editor-fold defaultstate="collapsed" desc="Barriers">
         map.addObstacleRange(new Point(0, 0), new Point(66, 0), ObstacleType.BARRIER);
         map.addObstacleRange(new Point(0, 0), new Point(0, 15), ObstacleType.BARRIER);
         map.addObstacleRange(new Point(0, 18), new Point(0, 34), ObstacleType.BARRIER);
         map.addObstacleRange(new Point(0, 34), new Point(66, 34), ObstacleType.BARRIER);
         map.addObstacleRange(new Point(66, 0), new Point(66, 31), ObstacleType.BARRIER);
-
+        
         map.addObstacleRange(new Point(1, 1), new Point(15, 1), ObstacleType.BARRIER);
         map.addObstacleRange(new Point(12, 2), new Point(15, 2), ObstacleType.BARRIER);
         map.addObstacleRange(new Point(12, 3), new Point(15, 3), ObstacleType.BARRIER);
@@ -77,7 +79,7 @@ public class MapFactory {
         
         map.addObstacleRange(new Point(8, 12 ), new Point(8, 20), ObstacleType.BARRIER);
         map.addObstacleRange(new Point(9, 12 ), new Point(9, 20), ObstacleType.BARRIER);
-
+        
         map.addObstacleRange(new Point(10, 12 ), new Point(21, 12), ObstacleType.BARRIER);
         map.addObstacleRange(new Point(10, 13 ), new Point(21, 13), ObstacleType.BARRIER);
         
@@ -134,18 +136,29 @@ public class MapFactory {
         map.addObstacleRange(new Point(35, 14 ), new Point(36, 15), ObstacleType.BARRIER);
         map.addObstacleRange(new Point(24, 11 ), new Point(32, 11), ObstacleType.BARRIER);
         map.addObstacleRange(new Point(24, 12 ), new Point(25, 15), ObstacleType.BARRIER);
-
-
+        
+        
         map.addObstacleRange(new Point(1, 21), new Point(1, 33), ObstacleType.BARRIER);
         map.addObstacleRange(new Point(2, 21), new Point(2, 33), ObstacleType.BARRIER);
         map.addObstacleRange(new Point(3, 24), new Point(3, 33), ObstacleType.BARRIER);
         map.addObstacleRange(new Point(1, 21), new Point(1, 33), ObstacleType.BARRIER);
+//</editor-fold>
 
+        map.addItem(new Item(new Point(1,19), ITEM_TYPE_KEY));
+        map.addItem(new Item(new Point(1,20), ITEM_TYPE_KEY));
         map.setPosition(new Point(10, 10));
 
-        //add items
-//        map.addItem(new Item(new Point(5, 5), ITEM_TYPE_KEY));
+
         return map;
     }
 
+
+    private static Map getMapLevel02() {
+        Map map = new Map(null, CELL_SIZE, new Dimension(35, 67));
+        return map;
+        
+
 }
+   
+}
+
