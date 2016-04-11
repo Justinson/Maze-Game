@@ -54,10 +54,10 @@ class Maze extends Environment {
     public void keyReleasedHandler(KeyEvent e) {
     }
 
-    private final static int PLAY_BUTTON_X = 49;
-    private final static int PLAY_BUTTON_Y = 370;
-    private final static int PLAY_BUTTON_WIDTH = 20;
-    private final static int PLAY_BUTTON_HEIGHT = 20;
+    public final static int PLAY_BUTTON_X = 49;
+    public final static int PLAY_BUTTON_Y = 370;
+    public final static int PLAY_BUTTON_WIDTH = 20;
+    public final static int PLAY_BUTTON_HEIGHT = 20;
     
     @Override
     public void environmentMouseClicked(MouseEvent e) {
