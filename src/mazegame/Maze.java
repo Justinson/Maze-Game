@@ -12,6 +12,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -26,14 +27,14 @@ class Maze extends Environment {
     
     int x;
     int y;
-    Image InventoryImage;
+    Image ChestImage;
     private Map currentMap;
     private MapVisualizerDefault mapVisualizer;
 
     public Maze() {
 //        grid = new Grid(71, 38, 20, 20, new Point(10, 10), Color.BLACK);
         setCurrentMap(MapFactory.getMapByName(MapFactory.MAP_NAME_LEVEL_01));
-        InventoryImage = ResourceTools.loadImageFromResource("mazegame/Chest.png");
+        ChestImage = ResourceTools.loadImageFromResource("mazegame/Chest.png");
 
     }
 
@@ -53,10 +54,24 @@ class Maze extends Environment {
     public void keyReleasedHandler(KeyEvent e) {
     }
 
+    private final static int PLAY_BUTTON_X = 49;
+    private final static int PLAY_BUTTON_Y = 370;
+    private final static int PLAY_BUTTON_WIDTH = 20;
+    private final static int PLAY_BUTTON_HEIGHT = 20;
+    
     @Override
     public void environmentMouseClicked(MouseEvent e) {
+    if (state == GameState.GAME) {
+            if (new Rectangle(PLAY_BUTTON_X, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT).contains(e.getPoint())) {
+
+            } else {
+            }
+            state = GameState.INVENTORY;
+        }
     }
 
+    
+   
     @Override
     public void paintEnvironment(Graphics graphics) {
 //                if (grid != null) {
@@ -66,7 +81,7 @@ class Maze extends Environment {
         if(currentMap != null){
             currentMap.drawMap(graphics);
         }
-        graphics.drawImage
+        graphics.drawImage(ChestImage, 49, 370, 20, 20, this);
     }
 
     /**
