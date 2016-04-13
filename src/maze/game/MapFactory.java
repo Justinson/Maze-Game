@@ -7,6 +7,7 @@ package maze.game;
 
 import images.ResourceTools;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Point;
 import map.Item;
 import map.Map;
@@ -42,8 +43,13 @@ public class MapFactory {
     public static final Dimension CELL_SIZE = new Dimension(20, 20);
 
     private static Map getMapLevel01() {
-        Map map = new Map(null, CELL_SIZE, new Dimension(35, 67));
-//ResourceTools.loadImageFromResource("dirt.png")
+        int columns = 35;
+        int rows = 67;
+        
+        Image background = ResourceTools.loadImageFromResource("maze/game/dirt.png").getScaledInstance(CELL_SIZE.width * rows, CELL_SIZE.height * columns, Image.SCALE_SMOOTH);
+        
+        Map map = new Map(background, CELL_SIZE, new Dimension(columns, rows));
+
         //add all my portals, barriers and items
 //<editor-fold defaultstate="collapsed" desc="Barriers">
         map.addObstacleRange(new Point(0, 0), new Point(66, 0), ObstacleType.BARRIER);
