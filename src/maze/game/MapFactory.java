@@ -169,7 +169,14 @@ public class MapFactory {
     }
 
     private static Map getMapLevel02() {
-        Map map = new Map(null, CELL_SIZE, new Dimension(35, 67));
+        int columns = 35;
+        int rows = 67;
+        
+        Image background = ResourceTools.loadImageFromResource("maze/game/dirtgrassland.png").getScaledInstance(CELL_SIZE.width * rows, CELL_SIZE.height * columns, Image.SCALE_SMOOTH);
+        
+        Map map = new Map(background, CELL_SIZE, new Dimension(columns, rows));
+        
+        
 
         map.addPortal(new Point(0, 1), MAP_NAME_LEVEL_01, new Point(16, 11));
 
