@@ -46,7 +46,7 @@ public class MapFactory {
         int columns = 35;
         int rows = 67;
         
-        Image background = ResourceTools.loadImageFromResource("maze/game/dirt.png").getScaledInstance(CELL_SIZE.width * rows, CELL_SIZE.height * columns, Image.SCALE_SMOOTH);
+        Image background = ResourceTools.loadImageFromResource("mazegame/dirt.png").getScaledInstance(CELL_SIZE.width * rows, CELL_SIZE.height * columns, Image.SCALE_SMOOTH);
         
         Map map = new Map(background, CELL_SIZE, new Dimension(columns, rows));
 

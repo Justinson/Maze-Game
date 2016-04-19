@@ -5,8 +5,8 @@
  */
 package mazegame;
 
+import java.awt.Font;
 import environment.Environment;
-import grid.Grid;
 import images.ResourceTools;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -15,9 +15,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import map.Map;
-import map.MapVisualizerDefault;
 
 /**
  *
@@ -25,18 +23,25 @@ import map.MapVisualizerDefault;
  */
 class Maze extends Environment {
 
+    Image titleImage;
+    private GameState state;
+    private final Image sectionOne;
+    private final Image castleOne;
     int x;
     int y;
     Image ChestImage;
     private Map currentMap;
-//    private MapVisualizerDefault mapVisualizer;
     private MazeMapVisualizer mapVisualizer;
 
     public Maze() {
-//        grid = new Grid(71, 38, 20, 20, new Point(10, 10), Color.BLACK);
+
+        titleImage = ResourceTools.loadImageFromResource("mazegame/Title.png");
+        sectionOne = ResourceTools.loadImageFromResource("mazegame/One.png");
+        castleOne = ResourceTools.loadImageFromResource("mazegame/CastleOne.png");
+        state = GameState.MENU;
+
         setCurrentMap(MapFactory.getMapByName(MapFactory.MAP_NAME_LEVEL_01));
         ChestImage = ResourceTools.loadImageFromResource("mazegame/Chest.png");
-
     }
 
     @Override
@@ -49,6 +54,11 @@ class Maze extends Environment {
 
     @Override
     public void keyPressedHandler(KeyEvent e) {
+//        if (e.getKeyCode() == KeyEvent.VK_P) {
+//            setState(GameState.PAUSE);
+//        } else if (getState() == GameState.PAUSE) {
+//            setState(GameState.GAME);
+//        }
     }
 
     @Override
@@ -62,25 +72,59 @@ class Maze extends Environment {
 
     @Override
     public void environmentMouseClicked(MouseEvent e) {
-//        if (state == GameState.GAME) {
-//            if (new Rectangle(PLAY_BUTTON_X, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT).contains(e.getPoint())) {
-//
-//            } else {
-//            }
-//            state = GameState.INVENTORY;
-//        }
+        //System.out.println(" Mouse click " + e.getPoint().toString());
+
+        if (getState() == GameState.MENU) {
+            if (new Rectangle(584, 307, 233, 52).contains(e.getPoint())) {
+                System.out.println("continue Clicked");
+            } else if (new Rectangle(558, 419, 277, 55).contains(e.getPoint())) {
+                setState(GameState.GAME);
+
+            } else if (new Rectangle(596, 540, 202, 49).contains(e.getPoint())) {
+                setState(GameState.OPTION);
+
+            }
+
+        }
     }
 
     @Override
     public void paintEnvironment(Graphics graphics) {
-//                if (grid != null) {
-//            grid.paintComponent(graphics);
-//    }
 
         if (currentMap != null) {
             currentMap.drawMap(graphics);
+
+            if (state == GameState.MENU) {
+                graphics.drawImage(titleImage, 0, 0, 1367, 710, null);
+            } else if (state == GameState.GAME) {
+                graphics.drawImage(sectionOne, -35, -15, 1405, 745, null);
+                graphics.drawImage(castleOne, 5, 10, 400, 300, null);
+            } else if (state == GameState.OPTION) {
+                this.setBackground(Color.BLACK);
+                Font fnt0 = new Font("button", Font.BOLD, 70);
+                graphics.setFont(fnt0);
+                graphics.setColor(Color.WHITE);
+                graphics.drawString("OPTIONS", 540, 100);
+            } else if (state == GameState.PAUSE) {
+
+            } else if (state == GameState.END) {
+
+            }
         }
-        graphics.drawImage(ChestImage, 49, 370, 20, 20, this);
+    }
+
+    /**
+     * @return the state
+     */
+    public GameState getState() {
+        return state;
+    }
+
+    /**
+     * @param state the state to set
+     */
+    public void setState(GameState state) {
+        this.state = state;
     }
 
     /**
@@ -105,5 +149,5 @@ class Maze extends Environment {
 
         repaint();
     }
-
+    
 }
