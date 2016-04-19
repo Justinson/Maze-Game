@@ -3,8 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/evanhoy/Documents/NetBeansProjects/Maze-Game/src/mazegame/GameState.java</file>
-            <file>file:/C:/Users/evanhoy/Documents/NetBeansProjects/Maze-Game/src/mazegame/Maze.java</file>
+            <file>file:/Users/Liam/NetBeansProjects/Maze-Game/src/mazegame/Maze.java</file>
+            <file>file:/Users/Liam/NetBeansProjects/Maze-Game/src/mazegame/MapFactory.java</file>
+            <file>file:/Users/Liam/NetBeansProjects/Maze-Game/src/mazegame/MazeGame.java</file>
         </group>
     </open-files>
 </project-private>

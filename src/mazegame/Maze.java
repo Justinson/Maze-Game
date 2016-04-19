@@ -16,6 +16,19 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import environment.Environment;
+import grid.Grid;
+import images.ResourceTools;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import map.Map;
+import map.MapVisualizerDefault;
 
 /**
  *
@@ -27,6 +40,11 @@ class Maze extends Environment {
     private GameState state;
     private final Image sectionOne;
     private final Image castleOne;
+    int x;
+    int y;
+    Image ChestImage;
+    private Map currentMap;
+    private MazeMapVisualizer mapVisualizer;
 
     public Maze() {
 
@@ -35,6 +53,8 @@ class Maze extends Environment {
         castleOne = ResourceTools.loadImageFromResource("mazegame/CastleOne.png");
         state = GameState.MENU;
 
+        setCurrentMap(MapFactory.getMapByName(MapFactory.MAP_NAME_LEVEL_01));
+        ChestImage = ResourceTools.loadImageFromResource("mazegame/Chest.png");
     }
 
     @Override
@@ -47,11 +67,11 @@ class Maze extends Environment {
 
     @Override
     public void keyPressedHandler(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_P) {
-            setState(GameState.PAUSE);
-        } else if (getState() == GameState.PAUSE) {
-            setState(GameState.GAME);
-        }
+//        if (e.getKeyCode() == KeyEvent.VK_P) {
+//            setState(GameState.PAUSE);
+//        } else if (getState() == GameState.PAUSE) {
+//            setState(GameState.GAME);
+//        }
     }
 
     @Override
@@ -108,6 +128,37 @@ class Maze extends Environment {
      */
     public void setState(GameState state) {
         this.state = state;
-
     }
+
+    public final static int PLAY_BUTTON_X = 49;
+    public final static int PLAY_BUTTON_Y = 370;
+    public final static int PLAY_BUTTON_WIDTH = 20;
+    public final static int PLAY_BUTTON_HEIGHT = 20;
+    
+ 
+    /**
+     * @return the currentMap
+     */
+    public Map getCurrentMap() {
+        return currentMap;
+    }
+
+    /**
+     * @param currentMap the currentMap to set
+     */
+    public void setCurrentMap(Map currentMap) {
+        if (mapVisualizer == null) {
+            mapVisualizer = new MazeMapVisualizer(true, true);
+        }
+        
+        this.currentMap = currentMap;
+        this.currentMap.setMapVisualizer(mapVisualizer);
+        this.currentMap.setPosition(new Point(50, 50));
+        //set portal, barrier, item listeners
+        
+        repaint();
+    }
+
+   
+    
 }
