@@ -18,6 +18,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import map.Map;
 import map.MapVisualizerDefault;
+import maze.game.MazeMapVisualizer;
 
 /**
  *
@@ -29,7 +30,8 @@ class Maze extends Environment {
     int y;
     Image ChestImage;
     private Map currentMap;
-    private MapVisualizerDefault mapVisualizer;
+//    private MapVisualizerDefault mapVisualizer;
+    private MazeMapVisualizer mapVisualizer;
 
     public Maze() {
 //        grid = new Grid(71, 38, 20, 20, new Point(10, 10), Color.BLACK);
@@ -96,7 +98,7 @@ class Maze extends Environment {
      */
     public void setCurrentMap(Map currentMap) {
         if (mapVisualizer == null) {
-            mapVisualizer = new MapVisualizerDefault(true, true);
+            mapVisualizer = new MazeMapVisualizer(true, true);
         }
         
         this.currentMap = currentMap;
