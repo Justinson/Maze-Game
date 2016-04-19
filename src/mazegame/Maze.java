@@ -18,14 +18,13 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import map.Map;
 import map.MapVisualizerDefault;
-import maze.game.MazeMapVisualizer;
 
 /**
  *
  * @author Justinson
  */
 class Maze extends Environment {
-    
+
     int x;
     int y;
     Image ChestImage;
@@ -60,27 +59,25 @@ class Maze extends Environment {
     public final static int PLAY_BUTTON_Y = 370;
     public final static int PLAY_BUTTON_WIDTH = 20;
     public final static int PLAY_BUTTON_HEIGHT = 20;
-    
+
     @Override
     public void environmentMouseClicked(MouseEvent e) {
-    if (state == GameState.GAME) {
-            if (new Rectangle(PLAY_BUTTON_X, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT).contains(e.getPoint())) {
-
-            } else {
-            }
-            state = GameState.INVENTORY;
-        }
+//        if (state == GameState.GAME) {
+//            if (new Rectangle(PLAY_BUTTON_X, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT).contains(e.getPoint())) {
+//
+//            } else {
+//            }
+//            state = GameState.INVENTORY;
+//        }
     }
 
-    
-   
     @Override
     public void paintEnvironment(Graphics graphics) {
 //                if (grid != null) {
 //            grid.paintComponent(graphics);
 //    }
-    
-        if(currentMap != null){
+
+        if (currentMap != null) {
             currentMap.drawMap(graphics);
         }
         graphics.drawImage(ChestImage, 49, 370, 20, 20, this);
@@ -100,14 +97,13 @@ class Maze extends Environment {
         if (mapVisualizer == null) {
             mapVisualizer = new MazeMapVisualizer(true, true);
         }
-        
+
         this.currentMap = currentMap;
         this.currentMap.setMapVisualizer(mapVisualizer);
         this.currentMap.setPosition(new Point(50, 50));
         //set portal, barrier, item listeners
-        
+
         repaint();
     }
 
-   
-    }
+}
