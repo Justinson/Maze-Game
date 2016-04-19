@@ -47,11 +47,6 @@ class Maze extends Environment {
 
     @Override
     public void keyPressedHandler(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_P) {
-            setState(GameState.PAUSE);
-        } else if (getState() == GameState.PAUSE) {
-            setState(GameState.GAME);
-        }
     }
 
     @Override
