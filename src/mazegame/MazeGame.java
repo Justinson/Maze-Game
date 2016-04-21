@@ -17,7 +17,7 @@ public class MazeGame {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ApplicationStarter.run("Maze", new Maze());
+        ApplicationStarter.run("Maze Wanderer", new Maze());
     }
 
 }
