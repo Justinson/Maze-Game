@@ -5,23 +5,24 @@
  */
 package mazegame;
 
-import audio.AudioPlayer;
-import environment.Direction;
-import environment.Environment;
-import images.ResourceTools;
-import java.awt.Color;
 import java.awt.Font;
+<<<<<<< HEAD
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 import grid.Grid;
+=======
+import environment.Environment;
+import images.ResourceTools;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+>>>>>>> refs/remotes/origin/master
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import map.Map;
-import map.MapVisualizerDefault;
 
 /**
  *
@@ -66,6 +67,11 @@ class Maze extends Environment {
     public void keyReleasedHandler(KeyEvent e) {
     }
 
+    public final static int PLAY_BUTTON_X = 49;
+    public final static int PLAY_BUTTON_Y = 370;
+    public final static int PLAY_BUTTON_WIDTH = 20;
+    public final static int PLAY_BUTTON_HEIGHT = 20;
+
     @Override
     public void environmentMouseClicked(MouseEvent e) {
         //System.out.println(" Mouse click " + e.getPoint().toString());
@@ -86,21 +92,26 @@ class Maze extends Environment {
 
     @Override
     public void paintEnvironment(Graphics graphics) {
-        if (state == GameState.MENU) {
-            graphics.drawImage(titleImage, 0, 0, 1367, 710, null);
-        } else if (state == GameState.GAME) {
-            graphics.drawImage(sectionOne, -35, -15, 1405, 745, null);
-            graphics.drawImage(castleOne, 5, 10, 400, 300, null);
-        } else if (state == GameState.OPTION) {
-            this.setBackground(Color.BLACK);
-            Font fnt0 = new Font("button", Font.BOLD, 70);
-            graphics.setFont(fnt0);
-            graphics.setColor(Color.WHITE);
-            graphics.drawString("OPTIONS", 540, 100);
-        } else if (state == GameState.PAUSE) {
 
-        } else if (state == GameState.END) {
+        if (currentMap != null) {
+            currentMap.drawMap(graphics);
 
+            if (state == GameState.MENU) {
+                graphics.drawImage(titleImage, 0, 0, 1367, 710, null);
+            } else if (state == GameState.GAME) {
+                graphics.drawImage(sectionOne, -35, -15, 1405, 745, null);
+                graphics.drawImage(castleOne, 5, 10, 400, 300, null);
+            } else if (state == GameState.OPTION) {
+                this.setBackground(Color.BLACK);
+                Font fnt0 = new Font("button", Font.BOLD, 70);
+                graphics.setFont(fnt0);
+                graphics.setColor(Color.WHITE);
+                graphics.drawString("OPTIONS", 540, 100);
+            } else if (state == GameState.PAUSE) {
+
+            } else if (state == GameState.END) {
+
+            }
         }
     }
 
@@ -118,12 +129,6 @@ class Maze extends Environment {
         this.state = state;
     }
 
-    public final static int PLAY_BUTTON_X = 49;
-    public final static int PLAY_BUTTON_Y = 370;
-    public final static int PLAY_BUTTON_WIDTH = 20;
-    public final static int PLAY_BUTTON_HEIGHT = 20;
-    
- 
     /**
      * @return the currentMap
      */
@@ -138,15 +143,13 @@ class Maze extends Environment {
         if (mapVisualizer == null) {
             mapVisualizer = new MazeMapVisualizer(true, true);
         }
-        
+
         this.currentMap = currentMap;
         this.currentMap.setMapVisualizer(mapVisualizer);
         this.currentMap.setPosition(new Point(50, 50));
         //set portal, barrier, item listeners
-        
+
         repaint();
     }
-
-   
     
 }
